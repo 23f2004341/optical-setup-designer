@@ -18,4 +18,4 @@ services:
     staticPublishPath: ./dist
     envVars:
       - key: VITE_API_URL
-        value: https://optical-setup-api.onrender.com # Will update with actual backend URL
+        value: https://optical-setup-designer-s4y8.onrender.com # Will update with actual backend URL
