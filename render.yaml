@@ -1,0 +1,21 @@
+services:
+  # Backend API service
+  - type: web
+    name: optical-setup-api
+    env: node
+    buildCommand: npm install
+    startCommand: node server/index.js
+    envVars:
+      - key: PORT
+        value: 4000
+      - key: NODE_ENV
+        value: production
+
+  # Frontend static site
+  - type: static
+    name: optical-setup-frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://optical-setup-api.onrender.com # Will update with actual backend URL

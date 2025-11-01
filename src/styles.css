@@ -1,0 +1,81 @@
+:root{
+  --bg:#0f1724;
+  --panel:#0b1220;
+  --muted:#9aa6b2;
+  --accent:#3b82f6;
+}
+*{box-sizing:border-box}
+html,body,#root{height:100%;margin:0;font-family:Inter,Segoe UI,Arial}
+body{background:linear-gradient(180deg,#071021 0%, #081124 100%);color:#e6eef6}
+.app-root{display:flex;flex-direction:column;height:100vh}
+.app-header{padding:12px 16px;background:rgba(255,255,255,0.04);font-weight:600}
+.app-body{display:flex;flex:1;gap:12px;padding:12px}
+.toolbox{width:200px;background:rgba(255,255,255,0.02);padding:12px;border-radius:8px}
+.toolbox h3{margin:0 0 8px 0}
+.toolbox-list{display:flex;flex-direction:column;gap:8px}
+.toolbox-item{padding:8px;border-radius:6px;background:rgba(255,255,255,0.02);cursor:grab}
+.toolbox-item:active{cursor:grabbing}
+.toolbox-hint{font-size:12px;color:var(--muted);margin-top:8px}
+
+.grid-area{flex:1;background:rgba(255,255,255,0.015);padding:12px;border-radius:8px;display:flex;justify-content:center;align-items:center}
+.grid{display:grid;gap:6px;width:100%;height:100%;align-content:start;padding:8px}
+.grid-cell{background:rgba(255,255,255,0.01);min-height:64px;display:flex;align-items:center;justify-content:center;border:1px dashed rgba(255,255,255,0.02);position:relative}
+
+.optical-item{min-width:48px;min-height:36px;padding:6px;border-radius:6px;color:#052734;display:flex;align-items:center;justify-content:center;font-weight:600;cursor:grab}
+.optical-item.selected{outline:3px solid rgba(59,130,246,0.6);}
+.opt-label{font-size:12px}
+
+/* rotation handle */
+.rotate-handle{position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:14px;height:14px;background:rgba(255,255,255,0.9);border-radius:50%;border:2px solid rgba(0,0,0,0.2);cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,0.3)}
+.optical-item{position:relative}
+
+.settings-panel{width:260px;background:rgba(255,255,255,0.02);padding:12px;border-radius:8px}
+.settings-panel h3{margin-top:0}
+.muted{color:var(--muted)}
+.setting-row{display:flex;flex-direction:column;margin:8px 0}
+.setting-row label{font-size:12px;color:var(--muted);margin-bottom:6px}
+.setting-row input{padding:6px;border-radius:6px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+.setting-actions{margin-top:12px}
+.btn-danger{background:#ef4444;border:none;color:white;padding:8px;border-radius:6px;cursor:pointer}
+
+.simulation-panel{width:320px;background:rgba(255,255,255,0.02);padding:12px;border-radius:8px}
+.simulation-panel h3{margin:0 0 8px 0}
+.sim-actions{margin-bottom:8px}
+.btn-primary{background:var(--accent);border:none;color:white;padding:8px 12px;border-radius:6px;cursor:pointer}
+.sim-chart{height:220px}
+.sim-chart canvas{width:100%!important;height:100%!important}
+.sim-stats{font-size:12px;margin-top:8px}
+.sim-error{color:#fecaca;background:rgba(239,68,68,0.08);padding:6px;border-radius:6px;margin-top:8px}
+
+/* overlay for rays */
+.grid-area{position:relative}
+.grid-overlay{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+
+/* animate ray stroke to look like travel */
+@keyframes dash-move {
+  to { stroke-dashoffset: 0; }
+}
+.ray-anim{
+  stroke-dashoffset: 1000; /* initial large offset */
+  animation-name: dash-move;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+/* Small per-type visuals */
+.toolbox-item-lens{background:linear-gradient(90deg,#ffeaa7,#ffd166)}
+.toolbox-item-mirror{background:linear-gradient(90deg,#c7f9cc,#9be7a6)}
+.toolbox-item-beamsplitter{background:linear-gradient(90deg,#cfe8ff,#a7d2ff)}
+.toolbox-item-fiber{background:linear-gradient(90deg,#ffd6e0,#ffb4c6)}
+.toolbox-item-detector{background:linear-gradient(90deg,#e2e2e2,#cfcfcf)}
+
+.optical-item.lens{border-radius:50%;width:56px;height:56px}
+.optical-item.mirror{width:56px;height:12px;border-radius:2px}
+.optical-item.beamsplitter{width:56px;height:28px;border-radius:6px}
+.optical-item.fiber{width:8px;height:48px;border-radius:4px}
+.optical-item.detector{width:44px;height:44px;border-radius:4px}
+
+@media (max-width:900px){
+  .toolbox,.settings-panel{display:none}
+}
