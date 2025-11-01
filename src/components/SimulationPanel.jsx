@@ -84,7 +84,7 @@ export default function SimulationPanel({ items, setSimulationResult }) {
         }
       }
 
-      const resp = await fetch('http://localhost:4000/simulate', {
+      const resp = await fetch('https://optical-setup-designer-s4y8.onrender.com/simulate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
